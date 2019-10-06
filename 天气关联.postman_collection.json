@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "5144a45d-21f8-48b8-984b-0f7a896e52f5",
+		"name": "天气关联",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "查看北京天气",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12102499-73a2-42c2-ba7b-014ae4f03707",
+						"exec": [
+							"var jsonData = pm.response.json()",
+							"",
+							"var city0926 = jsonData.weatherinfo.city",
+							"pm.globals.set(\"g_city\",city0926);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.weather.com.cn/data/sk/101010100.html",
+					"protocol": "http",
+					"host": [
+						"www",
+						"weather",
+						"com",
+						"cn"
+					],
+					"path": [
+						"data",
+						"sk",
+						"101010100.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "百度查询",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12102499-73a2-42c2-ba7b-014ae4f03707",
+						"exec": [
+							"var jsonData = pm.response.json()",
+							"",
+							"var city0926 = jsonData.weatherinfo.city",
+							"pm.globals.set(\"g_city0926\",city0926);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.baidu.com/s?wd={{g_city0926}}",
+					"protocol": "http",
+					"host": [
+						"www",
+						"baidu",
+						"com"
+					],
+					"path": [
+						"s"
+					],
+					"query": [
+						{
+							"key": "wd",
+							"value": "{{g_city0926}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
